@@ -1,0 +1,32 @@
+{
+  "name": "pick_the_best_react",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "browserify -t [ babelify 2015 ] src/index.js -o app/bundle.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "babel-preset-react": "^6.11.1",
+    "babelify": "^7.3.0",
+    "browserify": "^13.1.0",
+    "connect": "^3.4.1",
+    "connect-livereload": "^0.5.4",
+    "cors": "^2.7.1",
+    "express": "^4.14.0",
+    "gulp": "^3.9.1",
+    "gulp-react": "^3.1.0",
+    "gulp-util": "^3.0.7",
+    "oauth": "^0.9.14",
+    "path": "^0.12.7",
+    "react": "^15.3.0",
+    "react-dom": "^15.3.0",
+    "reactify": "^1.1.1",
+    "request": "^2.74.0",
+    "util": "^0.10.3",
+    "vinyl-source-stream": "^1.1.0"
+  }
+}
