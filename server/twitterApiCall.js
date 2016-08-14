@@ -25,34 +25,15 @@ var oauth = new OAuth.OAuth(
 );
 var temp_str;
 var ans = [];
-/*    $(document).ready(function(){
-$(function (){
-$.ajax({
-url: 'https://www.blueworkslive.com/api/Auth', // url checkd ...// error 400 not found url
-data: {
-//data
-username:username,
-email:email
-},
-dataType: 'json',
-success: function(data)
-{
-//result success
-}
-});
-});
-});
-*/
+var avg = 0.0;
+//array_avg= {};
 module.exports = {
-  jsonify: function(){
-
-  },
 
   getOauth: function() {
     console.log("in getoauth");
     console.log(oauth);
     oauth.get(
-      'https://api.twitter.com/1.1/search/tweets.json?q=bbqnation&count=100',
+      'https://api.twitter.com/1.1/search/tweets.json?q=bbqnation&count=20',
       '746052386687455232-FCo68XmTMPKBHXUahcGDInFHQmhi5bj',
       //you can get it at dev.twitter.com for your own apps
       '5gzQI7letoD3UXmWRi2yn1LIS8u76QLYzCJbCtTP28bRU',
@@ -66,64 +47,44 @@ module.exports = {
         //  var json = JSON.stringify(eval("(" + str + ")"));
         //      console.log(temp_str.statuses.length);
         for (i = 0; i < temp_str.statuses.length; i++) {
-          //    console.log(temp_str.statuses[i].text)
-          /*
-          var http = "https://api.havenondemand.com/1/api/sync/analyzesentiment/v1";
-          var form = {"text":"temp_str.statuses[i].text","language":"eng", "apikey":"3d07e984-eae3-4844-beb6-63049de63a88"}
-          //var data = {"ticket":{"subject":"My printer is on fire!", "comment": { "body": "The smoke is very colorful." }}};
+
+          // Set the headers
+          var headers = {
+            'User-Agent':       'Super Agent/0.0.1',
+            'Content-Type':     'application/x-www-form-urlencoded'
+          }
+
+          // Configure the request
+          var options = {
+            url: ' https://api.havenondemand.com/1/api/sync/analyzesentiment/v1',
+            method: 'POST',
+            headers: headers,
+            form: {'text':temp_str.statuses[i].text,'language':'eng', 'apikey':'3d07e984-eae3-4844-beb6-63049de63a88'}
+          }
+
+          // Start the request
+          request(options, function (error, response, body) {
+            if (!error && response.statusCode == 200) {
+              // Print out the response body
+              var stringify = JSON.stringify(body);
+              ///  console.log(Object.keys(util.inspect(data,false,Infinity,true))[0]);
+              temp_str = JSON.parse(eval("(" + stringify + ")"));
+              console.log(temp_str.aggregate.score);
+              if(temp_str.aggregate.score>0.0 || temp_str.aggregate.score< 0.0){
+                avg += temp_str.aggregate.score;
+                ans.push(temp_str.aggregate.score);
+                avg = avg/ans.length;
+              }
+            }
+          })
+        }
 
 
-          $.ajax({
-          url: http,
-          beforeSend: function(xhr) {
-          xhr.setRequestHeader("Authorization", "Basic");
-        },
-        type: 'POST',
-        dataType: 'json',
-        contentType: 'application/json',
-        processData: false,
-        //    data: data,
-        form: form,
-        success: function (data) {
-        console.log(data);
-      },
-      error: function(){
-      console.log("Cannot get data");
+      });
+      var array_avg = {
+        "array": ans,
+        "avg": avg
+      };
+      return array_avg;
     }
-  });
-  */
-
-
-  // Set the headers
-  var headers = {
-    'User-Agent':       'Super Agent/0.0.1',
-    'Content-Type':     'application/x-www-form-urlencoded'
   }
-
-  // Configure the request
-  var options = {
-    url: ' https://api.havenondemand.com/1/api/sync/analyzesentiment/v1',
-    method: 'POST',
-    headers: headers,
-    form: {'text':temp_str.statuses[i].text,'language':'eng', 'apikey':'3d07e984-eae3-4844-beb6-63049de63a88'}
-  }
-
-  // Start the request
-  request(options, function (error, response, body) {
-    if (!error && response.statusCode == 200) {
-      // Print out the response body
-      var stringify = JSON.stringify(body);
-      ///  console.log(Object.keys(util.inspect(data,false,Infinity,true))[0]);
-      temp_str = JSON.parse(eval("(" + stringify + ")"));
-      console.log(temp_str.aggregate.score);
-      ans.push(temp_str.aggregate.score);
-    }
-  })
-
-}
-//  console.log(temp_str);
-//done();
-});
-return ans;
-}
-}
