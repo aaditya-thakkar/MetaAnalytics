@@ -6,7 +6,7 @@
 // This example requires the Places library. Include the libraries=places
 // parameter when you first load the API. For example:
 // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
-var twitterApiCall = require('./twitterApiCall.js');
+var twitterApiCall = require('../server/twitterApiCall.js');
 var map, places, infoWindow;
 var markers = [];
 var autocomplete;
@@ -180,15 +180,10 @@ function search() {
         xhr.setRequestHeader('Authorization','OAuth oauth_consumer_key="iDOtKjkdh5YyXNbrevmeRGmhF",'oauth_nonce, '4148fa6e3dca3c3d22a8315dfb4ea5bb', 'oauth_signature','uDZP2scUz6FUKwFie4FtCtJfdNE%3D', 'oauth_signature_method', 'HMAC-SHA1', 'oauth_timestamp', '1359955650', 'oauth_token', '1127121421-aPHZHQ5BCUoqfHER2UYhQYUEm0zPEMr9xJYizXl', 'oauth_version', '1.0');
     }
 */
-
-
-
-
-
         // addResult(results[i], i);
       }
        console.log(JSON.stringify(nearestPlaces));
-        twitterApiCall.getOauth();
+        //twitterApiCall.getOauth();
        console.log(markers.length, results.length);
     }
   });
