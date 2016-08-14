@@ -8,6 +8,7 @@ Choices! The worst dilemma we experience when trying to figure out where to go o
 ## How it works?
 
 `MetaAnalytics` springs on `Google Maps` where user can search for a location to get all the nearby restaurants. This skips the tedious job of searching individual restaurants and enables comparison at a glance. User can visit the website for the details or review page of restaurants for the analysis. Here we use `twitter api` to fetch all the tweets with #restaurant_name. Then we use `HPE Haven api` to run sentiment analysis for the all the tweets to receive meaningful data. Sentiment analysis outputs value in the range from [-1,1]. Positive values indicate a positive review and negative values indicate a negative review. This user experience helps us to get the best opinion and we show the average rating for the restaurant.
+<img src="https://github.com/aaditya-thakkar/MetaAnalytics/blob/tempbranch/final_hackss.png"></img>
 
 ## How is it different?
 
